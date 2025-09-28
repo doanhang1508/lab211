@@ -15,7 +15,6 @@ public class Change21016 {
      */
     public static void main(String[] args) {
         while (true) {
-            try{
                 System.out.println("1. Convert From Binary.");
             System.out.println("2. Convert From Decimal.");
             System.out.println("3. Convert From Hexa.");
@@ -40,9 +39,8 @@ public class Change21016 {
                     System.out.println("Exit");
                     break;
             }
-            }catch(NumberFormatException e){
-                System.err.println("Invalid input. Please enter a number.");
-            }
+           
         }
     }
 }
+
