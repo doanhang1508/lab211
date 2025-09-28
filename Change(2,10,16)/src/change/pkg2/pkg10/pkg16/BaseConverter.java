@@ -109,5 +109,45 @@ public class BaseConverter {
     public static String hexToBin(String hex) {
         return decToBin(hexToDec(hex));
     }
+ // public static String decToBin(String decimal) {
+//        int n = Integer.parseInt(decimal);
+//        if (n == 0) return "0";
+//        if (n == 1) return "1";
+//        return decToBin(String.valueOf(n / 2)) + (n % 2);
+//    }
+//
+//    // ===== Decimal -> Hex =====
+//    public static String decToHex(String decimal) {
+//        int n = Integer.parseInt(decimal);
+//        if (n == 0) return "0";
+//        if (n < 16) return String.valueOf(HEX_CHARS[n]);
+//        return decToHex(String.valueOf(n / 16)) + HEX_CHARS[n % 16];
+//    }
+//
+//    // ===== Binary -> Decimal =====
+//    public static String binToDec(String binary) {
+//        if (binary.length() == 0) return "0";
+//        if (binary.length() == 1) return binary; // chỉ còn 1 bit
+//        int firstBit = binary.charAt(0) - '0';
+//        int power = (int) Math.pow(2, binary.length() - 1);
+//        return String.valueOf(firstBit * power + Integer.parseInt(binToDec(binary.substring(1))));
+//    }
+//     public static String hexToDec(String hex) {
+//     // base case: chuỗi rỗng => 0
+//     if (hex.length() == 0) return "0";
+//     // base case: còn 1 ký tự => trả về giá trị số
+//     if (hex.length() == 1) {
+//         char c = hex.charAt(0);
+//         if (c >= '0' && c <= '9') return String.valueOf(c - '0');
+//         else return String.valueOf(c - 'A' + 10);
+//     }
+//     // xử lý ký tự đầu
+//     char first = hex.charAt(0);
+//     int firstVal = (first >= '0' && first <= '9') ? (first - '0') : (first - 'A' + 10);
+//     int power = (int) Math.pow(16, hex.length() - 1);
 
+//     // công thức: giá trị = val(ký tự đầu) * 16^(n-1) + giá trị(đệ quy phần còn lại)
+//     return String.valueOf(firstVal * power + Integer.parseInt(hexToDec(hex.substring(1))));
+// }
 }
+
