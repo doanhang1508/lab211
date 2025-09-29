@@ -12,6 +12,10 @@ import java.util.Scanner;
 
 public class Validation {
          private static Scanner sc = new Scanner(System.in);
+         private static String[] days = {
+    "Sunday", "Monday", "Tuesday", "Wednesday", 
+    "Thursday", "Friday", "Saturday"
+};
 
     /**
      * Nhập số nguyên trong khoảng [min, max]
@@ -33,10 +37,26 @@ public class Validation {
         }
     }
 
+    public static String inputString(String msg, String regex) {
+        while (true) {
+            System.out.print(msg);
+            String value = sc.nextLine().trim();
+             if (value.isEmpty()) { // cho phép bỏ trống
+                 System.out.println("Input must not empty");
+        }
+            if (value.isEmpty()) {
+                System.out.println("Input cannot be empty.");
+            } else if (!value.matches(regex)) {
+                System.out.println("Invalid input format.");
+            } else {
+                return value;
+            }
+        }
+    }
     /**
      * Nhập chuỗi theo regex (ví dụ: cho phép cả khoảng trắng)
      */
-    public static String inputString(String msg, String regex) {
+    public static String inputStringEmpty(String msg, String regex) {
         while (true) {
             System.out.print(msg);
             String value = sc.nextLine().trim();
@@ -52,11 +72,52 @@ public class Validation {
             }
         }
     }
-
+    public static String checkDuplicated(String value){
+        StringBuilder sb = new StringBuilder();
+        for(int i=0; i<value.length();i++){
+            char c = value.charAt(i);
+            if(sb.indexOf(String.valueOf(c))==-1){
+                sb.append(c);
+            }
+        }
+        return sb.toString();
+    }
     /**
      * Nhập availability (>= 0)
      */
     public static String inputAvailability(String msg, String regex) {
+         while (true) {
+        System.out.print(msg);
+        String line = sc.nextLine().trim();
+
+        // nếu nhập rỗng
+        if (line.isEmpty()) {
+            System.out.println("Input must not empty");
+        }
+
+        try {
+            int value = Integer.parseInt(line); // thử parse
+            if (!line.matches(regex)) {
+                System.out.println("Availability must be 1-7");
+                continue;
+            }
+              line = checkDuplicated(line);
+
+            StringBuilder daysStr = new StringBuilder();
+            for (int i=0; i<line.length();i++) {
+                char c = line.charAt(i);
+                daysStr.append(days[(c-'0') - 1]).append(" ");
+            }
+
+            String result = daysStr.toString().trim();
+            return result;
+        } catch (NumberFormatException e) {
+            // bắt được khi người dùng nhập chữ hoặc ký tự ko phải số
+            System.out.println("Invalid format. Please try again.");
+        }
+    }
+    }
+         public static String inputAvailabilityEmpty(String msg, String regex) {
          while (true) {
         System.out.print(msg);
         String line = sc.nextLine().trim();
@@ -69,10 +130,17 @@ public class Validation {
         try {
             int value = Integer.parseInt(line); // thử parse
             if (!line.matches(regex)) {
-                System.out.println("Availability must be number >= 0");
+                System.out.println("Availability must be 1-7");
                 continue;
             }
-            return line;
+             StringBuilder daysStr = new StringBuilder();
+            for (int i=0; i<line.length();i++) {
+                char c = line.charAt(i);
+                daysStr.append(days[(c-'0') - 1]).append(" ");
+            }
+
+            String result = daysStr.toString().trim();
+            return result;
         } catch (NumberFormatException e) {
             // bắt được khi người dùng nhập chữ hoặc ký tự ko phải số
             System.out.println("Invalid format. Please try again.");
