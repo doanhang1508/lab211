@@ -120,10 +120,15 @@ public class BaseConverter {
 //    public static String decToHex(String decimal) {
 //        int n = Integer.parseInt(decimal);
 //        if (n == 0) return "0";
-//        if (n < 16) return String.valueOf(HEX_CHARS[n]);
-//        return decToHex(String.valueOf(n / 16)) + HEX_CHARS[n % 16];
+
+//    if (n < 16) {
+//        return (n < 10) ? String.valueOf(n) : String.valueOf((char) ('A' + (n - 10)));
 //    }
 //
+//    return decToHex(n / 16) + 
+//           ((n % 16 < 10) ? String.valueOf(n % 16) 
+//                          : String.valueOf((char) ('A' + (n % 16))));
+//    }
 //    // ===== Binary -> Decimal =====
 //    public static String binToDec(String binary) {
 //        if (binary.length() == 0) return "0";
@@ -150,4 +155,5 @@ public class BaseConverter {
 //     return String.valueOf(firstVal * power + Integer.parseInt(hexToDec(hex.substring(1))));
 // }
 }
+
 
