@@ -6,6 +6,7 @@ package checkform;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Scanner;
 import java.util.regex.Pattern;
 
 /**
@@ -13,6 +14,7 @@ import java.util.regex.Pattern;
  * @author Thanh Hang
  */
 public class Validation {
+    private static Scanner sc = new Scanner(System.in);
     public static String checkPhone(String phone){
         if(!phone.matches("\\d+")){
             return "Phone number must be number.";
@@ -23,7 +25,7 @@ public class Validation {
         return "";
     }
     public static String checkEmail(String email){
-        if(!email.matches("^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\\\.[A-Za-z]{2,4}$")){
+        if(!email.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]+$")){
             return "Invalid format.";
         }
         return "";
@@ -48,4 +50,30 @@ public class Validation {
         }
         return "";
     }
+     public static String inputWithValidation(String type, String prompt) {
+    while (true) {
+        System.out.print(prompt);
+        String input = sc.nextLine().trim();
+        String msg = "";
+
+        switch (type.toLowerCase()) {
+            case "phone":
+                msg = checkPhone(input);
+                break;
+            case "email":
+                msg = checkEmail(input);
+                break;
+            case "date":
+                msg = checkDate(input);
+                break;
+            default:
+                msg = "Unknown validation type.";
+        }
+
+        if (msg.isEmpty()) {
+            return input;
+        }
+        System.out.println(msg);
+    }
+}
 }
