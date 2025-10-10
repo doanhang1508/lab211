@@ -12,30 +12,10 @@ import java.util.Scanner;
  */
 public class CheckForm {
 
- 
     public static void main(String[] args) {
-      Scanner sc = new Scanner(System.in);
-      while(true){
-          System.out.print("Enter phone number: ");
-          String phone=sc.nextLine().trim();
-          String msg = Validation.checkPhone(phone);
-          if(msg.isEmpty()) break;
-          System.out.println(msg);
-      }
-      while(true){
-          System.out.print("Enter email: ");
-          String email = sc.nextLine().trim();
-          String msg = Validation.checkEmail(email);
-          if(msg.isEmpty()) break;
-          System.out.println(msg);
-      }
-      while(true){
-          System.out.print("Enter date: ");
-          String date = sc.nextLine().trim();
-          String msg = Validation.checkDate(date);
-          if(msg.isEmpty()) break;
-          System.out.println(msg);
-      }
-        System.out.println("Successfull");
-}
+        String phone = Validation.inputWithValidation("phone", "Enter phone number: ");
+        String email = Validation.inputWithValidation("email", "Enter email: ");
+        String date = Validation.inputWithValidation("date", "Enter date (dd/MM/yyyy): ");
+        System.out.println("✅ All inputs are valid!");
+    }
 }
