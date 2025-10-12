@@ -48,10 +48,21 @@ public class Calculate {
         }
     }
 
-    private String fmt(double x) {
-        // Hiển thị đẹp: bỏ .0 nếu là số nguyên
-        if (Math.abs(x - Math.rint(x)) < 1e-12) return String.valueOf((long) Math.rint(x));
-        return String.format("%.10f", x).replaceAll("0+$", "").replaceAll("\\.$", "");
+   private String fmt(double x) {
+           // Nếu là số nguyên (ví dụ 10.0, 5.00000000001)
+    if (Math.abs(x - Math.round(x)) < 1e-9) {
+        return String.valueOf(Math.round(x)); // In ra số nguyên
+    } else {
+        // Nếu là số thực, làm tròn 10 chữ số, rồi bỏ số 0 thừa
+        String formatted = String.format("%.10f", x);
+        while (formatted.endsWith("0")) {
+            formatted = formatted.substring(0, formatted.length() - 1);
+        }
+        if (formatted.endsWith(".")) {
+            formatted = formatted.substring(0, formatted.length() - 1);
+        }
+        return formatted;
     }
-     
+    }
 }
+
