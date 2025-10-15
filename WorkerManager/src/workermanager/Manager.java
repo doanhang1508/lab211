@@ -69,8 +69,14 @@ public class Manager {
         System.out.printf("%-10s %-15s %-5s %-10s %-10s %-12s\n",
                 "Code", "Name", "Age", "Salary", "Status", "Date");
 
-        // Sắp xếp theo mã nhân viên (ID)
-        history.sort(Comparator.comparing(SalaryHistory::getId));
+      Comparator<SalaryHistory> byId = new Comparator<SalaryHistory>() {
+            @Override
+            public int compare(SalaryHistory o1, SalaryHistory o2) {
+                return o1.getId().compareTo(o2.getId());
+            }
+            
+        };
+        history.sort(byId);
 
         for (SalaryHistory h : history) {
             System.out.printf("%-10s %-15s %-5d %-10.0f %-10s %-12s\n",
@@ -87,3 +93,4 @@ public class Manager {
         return workers;
     }
 }
+
