@@ -46,41 +46,22 @@ public class Validation {
         }
     }
 
-    public static String checkDate() {
-        while (true) {
+     public static String checkDate() {
+         while (true) {
+         try {
             System.out.print("Date: ");
-            String date = sc.nextLine().trim();
-            if (!date.matches(DATE_REGEX)) {
-                System.out.println("Date must be format (dd/MM/yyyy)");
-                continue;
-            }
+            String dateCheck = sc.nextLine().trim();
 
-            String[] part = date.split("/");
-            int day = Integer.parseInt(part[0]);
-            int month = Integer.parseInt(part[1]);
-            int year = Integer.parseInt(part[2]);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            sdf.setLenient(false);
 
-            if (month < 1 || month > 12) {
-                System.out.println("Month must be from 1 to 12");
+            Date date = sdf.parse(dateCheck);
+            return dateCheck;
 
-                continue;
-
-            }
-            if (month >= 1 && month <= 12) {
-                int[] dayOfMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-                if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) {
-                    dayOfMonth[1] = 29;
-                }
-
-                if (day < 1 || day > dayOfMonth[month - 1]) {
-                    System.out.println("Invalid day!");
-
-                    continue;
-                }
-            }
-            return date;
-
+        } catch (Exception e) {
+            System.err.println("Date to correct format(dd/MM/yyyy)");
         }
+    }
     }
 
     public static String inputWithValidation(String type) {
@@ -103,3 +84,4 @@ public class Validation {
         }
     }
 }
+
