@@ -46,7 +46,7 @@ public class Validation {
         }
     }
 
-     public static String checkDate() {
+    public static String checkDate() {
          while (true) {
          try {
             System.out.print("Date: ");
@@ -56,9 +56,9 @@ public class Validation {
             sdf.setLenient(false);
 
             Date date = sdf.parse(dateCheck);
-            return dateCheck;
+            return sdf.format(date);      
 
-        } catch (Exception e) {
+        } catch (ParseException e) {
             System.err.println("Date to correct format(dd/MM/yyyy)");
         }
     }
@@ -84,4 +84,5 @@ public class Validation {
         }
     }
 }
+
 
